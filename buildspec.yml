@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm install
+
+  pre_build:
+    commands:
+      - echo Running pre-build steps...
+
+  build:
+    commands:
+      - echo Building the project...
+      - npm run build
+
+  post_build:
+    commands:
+      - echo Build completed successfully.
+
+artifacts:
+  files:
+    - 'libs/oltp-*.jar'
+  discard-paths: no
+
