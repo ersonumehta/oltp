@@ -19,9 +19,11 @@ phases:
   post_build:
     commands:
       - echo Build completed successfully.
+      - pwd
+      - ls -ltr
 
 artifacts:
   files:
-    - 'libs/oltp-*.jar'
+    - '**/oltp-*.jar'
   discard-paths: no
 
