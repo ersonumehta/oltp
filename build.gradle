@@ -8,33 +8,6 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
-def versionPropsFile = file('version.properties')
-def versionProps = new Properties()
-if (versionPropsFile.exists()) {
-	versionProps.load(new FileInputStream(versionPropsFile))
-}
-
-def versionMajor = versionProps['version.major']?.toInteger() ?: 0
-def versionMinor = versionProps['version.minor']?.toInteger() ?: 0
-def versionPatch = versionProps['version.patch']?.toInteger() ?: 1
-def versionQualifier = versionProps['version.qualifier'] ?: 'SNAPSHOT'
-
-version = "${versionMajor}.${versionMinor}.${versionPatch}-${versionQualifier}"
-
-task incrementVersion {
-	doLast {
-		versionPatch++
-		versionProps['version.major'] = versionMajor.toString()
-		versionProps['version.minor'] = versionMinor.toString()
-		versionProps['version.patch'] = versionPatch.toString()
-		versionProps['version.qualifier'] = versionQualifier
-		versionProps.store(versionPropsFile.newWriter(), null)
-	}
-}
-
-build.dependsOn incrementVersion
-
-
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
@@ -46,10 +19,10 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+
 configurations.all {
 	resolutionStrategy.activateDependencyLocking()
 }
-
 
 repositories {
 	mavenCentral()
