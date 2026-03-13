@@ -24,6 +24,6 @@ phases:
 
 artifacts:
   files:
-    - '**/oltp-*.jar'
-  discard-paths: no
+    - 'build/oltp-*.jar'
+  discard-paths: yes
 
