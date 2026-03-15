@@ -26,6 +26,7 @@ artifacts:
   files:
     - 'build/libs/oltp-*.jar'
   discard-paths: yes
-  base-directory: $CODEBUILD_SRC_DIR
+  base-directory: 'oltp'
+  name: /
 
 
