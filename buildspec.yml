@@ -27,6 +27,5 @@ artifacts:
     - 'build/libs/oltp-*.jar'
   discard-paths: yes
   base-directory: 'oltp'
-  name: /
 
 
