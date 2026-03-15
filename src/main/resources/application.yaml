@@ -47,7 +47,3 @@ otel:
     attributes:
       service.name: ${spring.application.name}
       deployment.environment: development
-
-#logging:
-#  pattern:
-#    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'

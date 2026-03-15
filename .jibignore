@@ -1,0 +1,50 @@
+# Jib ignore file - excludes files from being added to the container image
+
+# Build artifacts
+build/
+target/
+*.class
+*.jar
+*.war
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Gradle
+.gradle/
+gradlew
+gradlew.bat
+gradle/
+
+# Docker
+Dockerfile
+docker-compose.yml
+compose.yaml
+
+# Documentation
+README.md
+*.md
+
+# Test files
+src/test/
+
+# Local environment
+.env
+.env.local
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.1.0-M2'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.google.cloud.tools.jib' version '3.4.4'
 }
 
 group = 'com.example'
@@ -43,7 +44,7 @@ dependencies {
 	// Logback OpenTelemetry Appender for log export
 	//implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:2.10.0-alpha'
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	// developmentOnly 'org.springframework.boot:spring-boot-docker-compose' // Excluded from Jib image
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-opentelemetry-test'
@@ -53,4 +54,53 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Jib configuration for building container images
+jib {
+	from {
+		image = 'eclipse-temurin:21-jre-jammy'
+		platforms {
+			platform {
+				architecture = 'amd64'
+				os = 'linux'
+			}
+		}
+	}
+	to {
+		image = "${project.group}/${project.name}:${project.version}"
+		tags = ['latest']
+	}
+	container {
+		jvmFlags = [
+				'-Xms256m',
+				'-Xmx512m',
+				'-XX:+UseContainerSupport',
+				'-XX:MaxRAMPercentage=75.0',
+				'-Djava.security.egd=file:/dev/./urandom'
+		]
+		ports = ['8080']
+		labels = [
+				'maintainer' : 'Sonu Kumar',
+				'application': project.name,
+				'version'    : project.version as String,
+				'description': project.description
+		]
+		environment = [
+				'SPRING_PROFILES_ACTIVE': 'qa',
+				'JAVA_TOOL_OPTIONS'     : '-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0'
+		]
+		creationTime = 'USE_CURRENT_TIMESTAMP'
+		format = 'OCI'
+	}
+	extraDirectories {
+		paths {
+			path {
+				from = file('src/main/jib')
+			}
+		}
+		permissions = [
+				'/app/resources': '755'
+		]
+	}
 }
