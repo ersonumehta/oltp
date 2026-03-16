@@ -8,6 +8,7 @@ phases:
   pre_build:
     commands:
       - echo Running pre-build steps...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 734836383818.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
@@ -16,6 +17,7 @@ phases:
       - chmod +x gradlew
       - ./gradlew build
       - echo "buildling image file and pushing to ecr"
+      #./gradlew jib --image=docker.io/ersonumehta/oltp:latest
       #- ./gradlew jib --image=123456789012.dkr.ecr.us-east-1.amazonaws.com/oltp:0.0.1-SNAPSHOT
       #- aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
 
@@ -24,6 +26,8 @@ phases:
       - echo Build completed successfully.
       - pwd
       - ls -ltr
+      - echo "buildling image file and pushing to ecr"
+      - ./gradlew jib --image=734836383818.dkr.ecr.us-east-1.amazonaws.com/oltp
 
 artifacts:
   files:

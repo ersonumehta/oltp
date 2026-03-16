@@ -68,8 +68,16 @@ jib {
 		}
 	}
 	to {
+		// Default local image name
+		// Override with: ./gradlew jib --image=docker.io/username/oltp:version
 		image = "${project.group}/${project.name}:${project.version}"
 		tags = ['latest']
+
+		// Example registry configurations (uncomment and modify as needed):
+		// Docker Hub: image = "docker.io/yourusername/oltp:${project.version}"
+		// GCR: image = "gcr.io/your-project-id/oltp:${project.version}"
+		// ECR: image = "123456789012.dkr.ecr.us-east-1.amazonaws.com/oltp:${project.version}"
+		// ACR: image = "myregistry.azurecr.io/oltp:${project.version}"
 	}
 	container {
 		jvmFlags = [
