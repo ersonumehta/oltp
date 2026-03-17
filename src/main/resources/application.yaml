@@ -3,32 +3,34 @@ spring:
     name: oltp
 
 #spring.docker.compose.enabled: false
-
 management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    prometheus:
-      enabled: true
   metrics:
     export:
+      otlp:
+        step: 120s
       prometheus:
-        enabled: true
+        enabled: false
     observations:
       key-values:
-        application: ${spring.application.name}
+              application: ${spring.application.name}
+  endpoints:
+    web:
+          exposure:
+            include: "*"
+  endpoint:
+    prometheus:
+          enabled: true
   observations:
     key-values:
-      application: ${spring.application.name}
+          application: ${spring.application.name}
   tracing:
     sampling:
-      probability: 1.0  # 100% sampling for development
+          probability: 1.0  # 100% sampling for development
   otlp:
     metrics:
-      export:
-        url: http://localhost:4318/v1/metrics
+        export:
+          url: http://localhost:4318/v1/metrics
+
 
 # OpenTelemetry Configuration
 otel:
