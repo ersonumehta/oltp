@@ -27,7 +27,9 @@ phases:
       - pwd
       - ls -ltr
       - echo "buildling image file and pushing to ecr"
-      - ./gradlew jib --image=734836383818.dkr.ecr.us-east-1.amazonaws.com/oltp
+      #- ./gradlew jib --image=734836383818.dkr.ecr.us-east-1.amazonaws.com/oltp
+      - ./gradlew jib --image=public.ecr.aws/a9m5d1a5/skumar/oltp
+
 
 artifacts:
   files:
