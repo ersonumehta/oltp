@@ -113,3 +113,35 @@ jib {
 		]
 	}
 }
+
+// CodeDeploy deployment tasks
+tasks.register('copyCodeDeployScripts', Copy) {
+	description = 'Copies CodeDeploy scripts to build directory'
+	group = 'deployment'
+
+	from file('scripts/codedeploy')
+	into file('build/codedeploy')
+
+	doLast {
+		println "CodeDeploy scripts copied to build/codedeploy"
+	}
+}
+
+tasks.register('zipCodeDeploy', Zip) {
+	description = 'Creates a zip file of CodeDeploy scripts'
+	group = 'deployment'
+
+	dependsOn copyCodeDeployScripts
+
+	from file('build/codedeploy')
+	archiveFileName = 'oltp-codedeploy.zip'
+	destinationDirectory = file('build')
+
+	doLast {
+		println "CodeDeploy zip created at build/codedeploy.zip"
+	}
+}
+
+tasks.named('build') {
+	dependsOn zipCodeDeploy
+}
