@@ -1,5 +1,6 @@
 #!/bin/bash
-
+pwd
+ls -ltr
 # Start the Spring Boot application detached from the script
 nohup java -jar /tmp/oltp-0.0.1-SNAPSHOT.jar > /tmp/output.txt 2>&1 &
 
