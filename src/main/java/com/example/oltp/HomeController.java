@@ -22,7 +22,7 @@ public class HomeController {
     @GetMapping("/greet/{name}")
     @Observed(name = "greet.operation", contextualName = "greetOperation")
     public String greet(@PathVariable String name) {
-        log.info("Greeting user: {}", name);
+        log.info("Greeting user[updated]: {}", name);
         simulateWork();
         return "Hello, " + name + "!";
     }
