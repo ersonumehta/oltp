@@ -36,6 +36,7 @@ artifacts:
   files:
     - 'build/libs/oltp-*.jar'
     - 'build/oltp-codedeploy.zip'
+    - 'build/codedeploy/*'
   discard-paths: yes
 
 
