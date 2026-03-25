@@ -2,16 +2,21 @@ version: 0.0
 os: linux
 hooks:
   BeforeInstall:
+    - pwd
+    - ls -ltr
     - location: deploy.sh
+      timeout: 30
       runas: root
     - location: stopExistingProcess.sh
       runas: root
 
   AfterInstall:
     - location: chmod.sh
+      timeout: 30
       runas: root
 
   ApplicationStart:
     - location: start.sh
+      timeout: 30
       runas: root
 
