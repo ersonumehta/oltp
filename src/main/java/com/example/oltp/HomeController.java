@@ -24,7 +24,7 @@ public class HomeController {
     public String greet(@PathVariable String name) {
         log.info("Greeting user[updated]: {}", name);
         simulateWork();
-        return "Hello, " + name + "!";
+        return "Hello, [updated]" + name + "!";
     }
 
     @GetMapping("/slow")
