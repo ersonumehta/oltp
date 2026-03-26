@@ -8,10 +8,10 @@ hooks:
     - location: stopExistingProcess.sh
       runas: root
 
-  AfterInstall:
-    - location: chmod.sh
-      timeout: 30
-      runas: root
+#  AfterInstall:
+#    - location: chmod.sh
+#      timeout: 30
+#      runas: root
 
   ApplicationStart:
     - location: start.sh
