@@ -2,7 +2,7 @@
 pwd
 ls -ltr
 # Start the Spring Boot application detached from the script
-nohup java -jar /tmp/oltp-0.0.1-SNAPSHOT.jar > /tmp/output.txt 2>&1 &
+nohup java -jar oltp-0.0.1-SNAPSHOT.jar > /tmp/output.txt 2>&1 &
 
 # Capture the process ID
 APP_PID=$!
