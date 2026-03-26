@@ -16,7 +16,7 @@ public class HomeController {
     @Observed(name = "custom2.operation2",contextualName = "customOperation2")
     public String home() {
         log.info("Home endpoint called");
-        return "Hello World!";
+        return "Hello World!p[updated]";
     }
 
     @GetMapping("/greet/{name}")
@@ -24,7 +24,7 @@ public class HomeController {
     public String greet(@PathVariable String name) {
         log.info("Greeting user[updated]: {}", name);
         simulateWork();
-        return "Hello, [updated again]" + name + "!";
+        return "Hello, [updated again 2]" + name + "!";
     }
 
     @GetMapping("/slow")

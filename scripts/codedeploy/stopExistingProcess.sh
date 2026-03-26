@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "starting STOP script - 1"
+echo "starting STOP script - 2"
 pwd
 ls -ltr
  sudo pkill -f "oltp-0.0.1-SNAPSHOT.jar"
