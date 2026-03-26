@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 hooks:
   BeforeInstall:
-    - location: deploy.sh
-      timeout: 30
-      runas: root
+#    - location: deploy.sh
+#      timeout: 30
+#      runas: root
     - location: stopExistingProcess.sh
       runas: root
 
