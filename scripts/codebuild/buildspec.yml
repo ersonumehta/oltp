@@ -22,6 +22,7 @@ phases:
       #- ./gradlew jib --image=123456789012.dkr.ecr.us-east-1.amazonaws.com/oltp:0.0.1-SNAPSHOT
       #- aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
 
+
   post_build:
     commands:
       - echo Build completed successfully.
