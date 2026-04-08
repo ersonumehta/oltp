@@ -7,16 +7,18 @@ phases:
 
   pre_build:
     commands:
+      - echo printing all dires
+      - ls -R
       - echo Running pre-build steps...
       #- aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 734836383818.dkr.ecr.us-east-1.amazonaws.com
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+      #- aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
 
   build:
     commands:
       - pwd
       - ls -ltr
       - chmod +x gradlew
-      - ./gradlew build
+      #- ./gradlew build
       - echo "buildling image file and pushing to ecr"
       #./gradlew jib --image=docker.io/ersonumehta/oltp:latest
       #- ./gradlew jib --image=123456789012.dkr.ecr.us-east-1.amazonaws.com/oltp:0.0.1-SNAPSHOT
@@ -30,7 +32,7 @@ phases:
       - ls -ltr
       - echo "buildling image file and pushing to ecr"
       #- ./gradlew jib --image=734836383818.dkr.ecr.us-east-1.amazonaws.com/oltp
-      - ./gradlew jib --image=public.ecr.aws/a9m5d1a5/skumar
+      #- ./gradlew jib --image=public.ecr.aws/a9m5d1a5/skumar
 
 
 artifacts:
